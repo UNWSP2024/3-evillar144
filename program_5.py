@@ -26,17 +26,17 @@ def order_hotdog():
     # Get the user's hot dog choice
     hotdog_choice = input("What kind of hot dog would you like? (Hot Dog / Chili Dog): ")
 
-    # Initialize base price and toppings cost
+    # Initialize base price and toppings string
     total_cost = 0
-    topping_details = []  # List to store selected toppings
+    topping_details = ""  # String to store selected toppings
 
     # Determine hot dog price based on user's choice
     if hotdog_choice.lower() == "hot dog":
         total_cost += Hot_dog
-        topping_details.append("Hot Dog")
+        topping_details = "Hot Dog"
     elif hotdog_choice.lower() == "chili dog":
         total_cost += Chili_dog
-        topping_details.append("Chili Dog")
+        topping_details = "Chili Dog"
     else:
         print("Sorry, we don't have that on the menu.")
         return None, None, None, None  # Return None if invalid choice
@@ -45,17 +45,17 @@ def order_hotdog():
     cheese_choice = input("Would you like cheese? (yes/no): ").lower()
     if cheese_choice == "yes":
         total_cost += cheese
-        topping_details.append("Cheese")
+        topping_details += ", Cheese"
 
     peppers_choice = input("Would you like peppers? (yes/no): ").lower()
     if peppers_choice == "yes":
         total_cost += peppers
-        topping_details.append("Peppers")
+        topping_details += ", Peppers"
 
     onions_choice = input("Would you like grilled onions? (yes/no): ").lower()
     if onions_choice == "yes":
         total_cost += grilled_onions
-        topping_details.append("Grilled Onions")
+        topping_details += ", Grilled Onions"
 
     # Calculate tax
     tax = total_cost * TAX_RATE
@@ -69,7 +69,7 @@ topping_details, total_cost, tax, total_with_tax = order_hotdog()
 
 if topping_details:
     print("\n---Order Summary---")
-    print(f"Hot Dog Choice: {', '.join(topping_details)}")
+    print(f"Hot Dog Choice: {topping_details}")
     print(f"Cost of Hot Dog: ${total_cost:.2f}")
     print(f"Tax: ${tax:.2f}")
     print(f"Total Cost: ${total_with_tax:.2f}")
